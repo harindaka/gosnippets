@@ -10,28 +10,35 @@ func generateRandomNumbers() {
 	randomNumber := randInt(10, 20)
 	fmt.Println(randomNumber)
 
+	minValue := -10
+	maxValue := 10
+
 	minOccurances := 0
 	maxOccurances := 0
-	withinRangeOccurances := 0
 	outOfRangeOccurances := 0
+	negativeOccurances := 0
+	positiveOccurances := 0
 
 	for i := 0; i < 1000; i++ {
-		randomNumber = randInt(10, 20)
-		if randomNumber == 10 {
+		randomNumber = randInt(minValue, maxValue)
+		if randomNumber == minValue {
 			minOccurances++
-		} else if randomNumber == 20 {
+		} else if randomNumber == maxValue {
 			maxOccurances++
-		} else if randomNumber < 10 || randomNumber > 20 {
+		} else if randomNumber < minValue || randomNumber > maxValue {
 			outOfRangeOccurances++
+		} else if randomNumber < 0 {
+			negativeOccurances++
 		} else {
-			withinRangeOccurances++
+			positiveOccurances++
 		}
 	}
 
 	fmt.Println("Min Occurances:", minOccurances)
 	fmt.Println("Max Occurances:", maxOccurances)
-	fmt.Println("Out of Range Occurances:", outOfRangeOccurances)
-	fmt.Println("Within Range Occurances:", withinRangeOccurances)
+	fmt.Println("Positive Occurances within Range:", positiveOccurances)
+	fmt.Println("Negative Occurances within Range:", negativeOccurances)
+	fmt.Println("Out of Range Occurances:", outOfRangeOccurances) //Should always be zero
 
 }
 
